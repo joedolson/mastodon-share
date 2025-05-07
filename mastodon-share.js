@@ -2,6 +2,7 @@
 // I got the key, I got the secret…
 let key = 'mastodon-instance';
 let instance = localStorage.getItem(key);
+instance = ( null === instance ) ? '' : instance;
 
 // get the link from the DOM
 const button = document.querySelector('.mastodon-share');
