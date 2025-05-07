@@ -8,7 +8,23 @@ const button = document.querySelector('.mastodon-share');
 
 // refresh the link with the instance name
 const refreshlink = (instance) => {
-    button.href = `https://${instance}/share?text=${encodeURIComponent(document.title)}%0A${encodeURIComponent(location.href)}`;
+	let url = isValidUrl( instance );
+	if ( ! url ) {
+		url = 'https://' + instance;
+	} else {
+		url = instance;
+	}
+    button.href = `${url}/share?text=${encodeURIComponent(document.title)}%0A${encodeURIComponent(location.href)}`;
+}
+
+// check whether stored value is a url
+function isValidUrl( string ) {
+	try {
+		new URL(string);
+		return true;
+	} catch (error) {
+		return false;
+	}
 }
 
 // got it? Let's go! 
